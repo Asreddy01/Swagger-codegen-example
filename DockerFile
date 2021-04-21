@@ -1,0 +1,6 @@
+FROM openjdk:15-jdk
+
+ADD target/swaggerdemo-0.0.1-SNAPSHOT.jar apiswaggerdemo.jar
+ENTRYPOINT ["java","-jar","apiswaggerdemo.jar"]
+
+EXPOSE 8080

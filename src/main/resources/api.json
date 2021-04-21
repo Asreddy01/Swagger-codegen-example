@@ -1,0 +1,115 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "EKart Service",
+    "description": "The Ekart Service"
+  },
+  "host": "localhost:8080",
+  "basePath": "/v2",
+  "tags": [
+    {
+      "name": "Ekart"
+    }
+  ],
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "paths": {
+    "/wow/products": {
+      "get": {
+        "summary": "Get all products from Ekart",
+        "tags": [
+          "Ekart"
+        ],
+        "description": "",
+        "operationId": "getAllProductsInEkart",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Product"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/wow/addpoducts": {
+      "post": {
+        "summary": "add new products into Ekart",
+        "tags": [
+          "Ekart"
+        ],
+        "description": "",
+        "operationId": "addProduct",
+        "consumes": [
+          "applicaiton/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Product object that needs to be added to the Ekart",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "successfully new row added",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Product": {
+      "type": "object",
+      "properties": {
+        "productId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "productName": {
+          "type": "string",
+          "description": "prodcut name"
+        },
+        "productType": {
+          "type": "string",
+          "description": "Product Type"
+        },
+        "productAvalilability": {
+          "type": "boolean",
+          "default": true
+        },
+        "productManufactureName": {
+          "type": "string",
+          "description": "Product Manufacture Name"
+        }
+      },
+      "xml": {
+        "name": "Product"
+      }
+    }
+  }
+}
